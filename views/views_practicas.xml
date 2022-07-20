@@ -1,0 +1,279 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- modulo para crea reserva de hora a los alumnos de las practicas de conduccion -->
+
+        <record id="view_cert_practicas_form" model="ir.ui.view">
+            <field name="name">practicas.form</field>
+            <field name="model">cert.practicas</field>
+            <field name="arch" type="xml">
+                <form string="Toma de Hora">
+                    <header>
+                        <button name="action_done" type="object" string="Practica Realizada" states="A"  class="oe_highlight"
+                        confirm="Esta Seguro de que la practica esta realizada?"/>
+                        <field name="state"  widget="statusbar" statusbar_visible="A,B"/>
+                    </header>
+                    <sheet>
+                        <separator string="Registrar Fecha y Hora"/>
+                        <div class="oe_title">
+                             <h1>
+                                 <field name="name" placeholder="Nombre Alumno"/>
+                             </h1>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="ward"  placeholder="Rut" required="1"/>
+                            <field name="fhone" placeholder="+56" widget="phone"/>
+                            <field name="lessons"/>
+                            <field name="instructor" widget="selection" />
+                        </group>
+
+                        <group col="4" colspan="4">
+                            <field name="date_first"/>
+                            <field name="date_last"/>
+                            <field name="duration" widget="float_time"/>
+                        </group>
+
+                        <group col="4" colspan="4" string="Instruciones Realizadas">
+                            <field name="tick1"/>
+                            <field name="tick2"/>
+                            <field name="tick3"/>
+                            <field name="tick4"/>
+                            <field name="tick5"/>
+                            <field name="tick6"/>
+                            <field name="tick7"/>
+                        </group>
+                        <group col="4" colspan="4">
+                            <field name="km1"/>
+                            <field name="km2"/>
+                            <field name="total_id"/>
+                        </group>
+                        <newline />
+                            <separator string="Comentarios" colspan="4" />
+                            <field name="comment" colspan="4" placeholder="Comentarios"/>
+                        <group col="4" colspan="4">
+                            <label for="digital_signatures" string="Signatures" class="oe_edit_only" />
+                            <h3>
+                                <field name="digital_signatures" widget="signature"/>
+                            </h3>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_cert_practicas_tree" model="ir.ui.view">
+            <field name="name">practicas.tree</field>
+            <field name="model">cert.practicas</field>
+            <field name="arch" type="xml">
+                <tree string="Certificados" decoration-danger="state == 'A'" decoration-info="state == 'B'">
+                    <field name="name"/>
+                    <field name="ward"/>
+                    <field name="fhone"/>
+                    <field name="lessons" />
+                    <field name="instructor"/>
+                    <field name="date_first"/>
+                    <field name="date_last"/>
+                    <field name="state" decoration-danger="state == 'A'" decoration-info="state == 'B'" widget="badge"/>
+                    <field name="duration" widget="float_time"/>
+                </tree>
+            </field>
+        </record>
+
+
+<!-- widget para utilizar en el calendar: date_start, date_stop, date_dalay, color, event_open_popup -->
+<!-- quick_add, mode, avatar_field, filters, hide_time, event_limit -->
+
+        <record id="view_cert_practicas_calendar" model="ir.ui.view">
+            <field name="model">cert.practicas</field>
+            <field name="arch" type="xml">
+                <calendar date_start="date_first" color="lessons" event_open_popup="True"
+                          mode="month" quick_add="False" event_limit="6" >
+                    <field name="name"/>
+                    <field name="ward"/>
+                    <field name="fhone"/>
+                    <field name="instructor" filters="1" avatar_field="image_1920" />
+                </calendar>
+            </field>
+        </record>
+
+        <record id="view_cert_practicas_pivot" model="ir.ui.view">
+            <field name="model">cert.practicas</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name" />
+                    <field name="ward"/>
+                    <field name="date_first" interval="week"/>
+                    <field name="lessons" />
+                    <field name="instructor" type="col"/>
+                    <field name="duration"/>
+                </pivot>
+            </field>
+        </record>
+
+<!-- formulario para los alumnos llevar registro de practicas -->
+
+        <record id="view_cert_alumno_form" model="ir.ui.view">
+            <field name="name">alumno.form</field>
+            <field name="model">cert.alumno</field>
+            <field name="arch" type="xml">
+                <form string="Registrar Practicas de Alumnos">
+                    <sheet>
+                         <div class="oe_button_box" name="button_box">
+                            <button name="get_practicas" type="object" class="oe_stat_button"  icon="fa-car" >
+                                <field name="student_count" string="Practicas" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <separator string="Registrar Alumno"/>
+                        <div class="oe_button_box" name="button_box"/>
+                            <field name="image" widget="image"  class="oe_avatar"/>
+                        <div class="oe_title" colspan="4">
+                             <h1>
+                                <field name="reference" readonly="1"/>
+                             </h1>
+                        </div>
+
+                        <group col="4" colspan="4">
+                            <field name="name"  placeholder="Rut"/>
+                            <field name="name_id" placeholder="Nombre Alumno"/>
+                            <field name="date" widget="date"/>
+                            <field name="employee_ids" widget="selection" />
+                            <field name="clase_id"/>
+                        </group>
+
+                        <notebook>
+                            <page string="Student">
+                                <field name="student" >
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="ward"/>
+                                        <field name="fhone"/>
+                                        <field name="lessons"/>
+                                        <field name="instructor"/>
+                                        <field name="date_first"/>
+                                        <field name="date_last"/>
+                                    </tree>
+                                    <form>
+                                        <sheet>
+                                            <div class="oe_title">
+                                                <h1>
+                                                    <field name="name" placeholder="Nombre Alumno"/>
+                                                </h1>
+                                            </div>
+                                            <group col="4" colspan="4">
+                                                <field name="ward" placeholder="Rut" required="1"/>
+                                                <field name="fhone" placeholder="+56" widget="phone"/>
+                                                <field name="lessons" />
+                                                <field name="instructor" widget="selection"/>
+                                            </group>
+
+                                            <group col="4" colspan="4">
+                                                <field name="date_first"/>
+                                                <field name="date_last"/>
+                                            </group>
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                     <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                     </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_cert_alumno_tree" model="ir.ui.view">
+            <field name="name">alumno.tree</field>
+            <field name="model">cert.alumno</field>
+            <field name="arch" type="xml">
+                <tree string="Registro Alumno">
+                    <field name="reference" readonly="1"/>
+                    <field name="name"/>
+                    <field name="name_id"/>
+                    <field name="date"/>
+                    <field name="employee_ids"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_cert_alumno_kanban" model="ir.ui.view">
+            <field name="name">view.cert.alumno.kanban</field>
+            <field name="model">cert.alumno</field>
+            <field name="arch" type="xml">
+                <kanban class="o_cert_alumno_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="name_id"/>
+                    <field name="employee_ids"/>
+                    <field name="date"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar"
+                                         t-att-src="kanban_image('cert.alumno', 'image', record.id.raw_value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="text-red">
+                                        <field name="name"/>
+                                    </strong>
+                                     <div t-if="record.name_id.value">
+                                        <t t-esc="record.name_id.value"/>
+                                    </div>
+                                    <div t-if="record.employee_ids.value">
+                                        <t t-esc="record.employee_ids.value"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+<!--Formulario de registro para el instructor -->
+
+        <record id="view_cert_instructor_form" model="ir.ui.view">
+            <field name="name">instructor.form</field>
+            <field name="model">cert.instructor</field>
+            <field name="arch" type="xml">
+                <form string="Instructor">
+                    <sheet>
+                        <separator string="REGISTRAR INSTRUCTOR"/>
+                        <div class="oe_title">
+                             <h1>
+                                 <field name="name" placeholder="Nombre Completo"/>
+                             </h1>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="date" widget="date"/>
+                        </group>
+                        <group col="4" colspan="4" string="DATOS VEHICULO">
+                            <field name="card"/>
+                            <field name="patente"/>
+                            <field name="model"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_cert_instructor_tree" model="ir.ui.view">
+            <field name="name">instructor.tree</field>
+            <field name="model">cert.instructor</field>
+            <field name="arch" type="xml">
+                <tree string="Instructor">
+                    <field name="name"/>
+                    <field name="date"/>
+                    <field name="card"/>
+                    <field name="model"/>
+                    <field name="patente"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<odoo>
+    <data>
+        <!-- modulo para ingresar los registro de las compras que realiza la escuela -->
+
+        <record id="view_cert_compras_form" model="ir.ui.view">
+            <field name="name">compras.form</field>
+            <field name="model">cert.compras</field>
+            <field name="arch" type="xml">
+                <form string="Gastos Realizadas">
+                    <sheet>
+                        <separator string="Registrar Gastos"/>
+                        <div class="oe_title">
+                             <h1>
+                                 <field name="name" placeholder="Boleta"/>
+                             </h1>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="rut_id"  placeholder="Rut de la Emp." required="1"/>
+                            <field name="coste" required="1"/>
+                            <field name="business" required="1"/>
+                            <field name="clerk" widget="selection" domain="[('job_title','=','Vendedores')]"/>
+                        </group>
+
+                        <group col="4" colspan="4">
+                            <field name="type"/>
+                            <field name="date_id"/>
+                            <field name="metodo"/>
+                        </group>
+                        <newline />
+                            <separator string="Comentarios" colspan="4" />
+                            <field name="description" colspan="4" placeholder="Comentarios"/>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_cert_compras_tree" model="ir.ui.view">
+            <field name="name">compras.tree</field>
+            <field name="model">cert.compras</field>
+            <field name="arch" type="xml">
+                <tree string="Registro de Gastos">
+                    <field name="name"/>
+                    <field name="rut_id"/>
+                    <field name="business"/>
+                    <field name="coste" sum="Total Amount"/>
+                    <field name="clerk" widget="many2one_avatar"/>
+                    <field name="type"/>
+                    <field name="date_id"/>
+                    <field name="metodo"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_cert_compras_pivot" model="ir.ui.view">
+            <field name="model">cert.compras</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="date_id" type="row"/>
+                    <field name="coste" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+
+        <record id="view_cert_compras_graph" model="ir.ui.view">
+            <field name="model">cert.compras</field>
+            <field name="arch" type="xml">
+                <graph string="Gastos">
+                    <field name="coste"  type="measure"/>
+                    <field name="clerk"/>
+                    <field name="type"/>
+                </graph>
+            </field>
+        </record>
+
+    </data>
+</odoo>

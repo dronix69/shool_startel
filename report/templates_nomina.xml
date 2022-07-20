@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report id="reporte_nomina_cert"
+            string="Imp Liquidación"
+            model="cert.nomina"
+            report_type="qweb-pdf"
+            name="shool_startel.nomina_reporte_nomina_cert"
+            print_report_name="'Liquidación - %s' % (object.name)"
+
+        />
+
+        <template id="nomina_reporte_nomina_cert">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <head>
+                                <style>
+                                    .demo {
+                                    border: 1px sólido #354259;
+                                    border-collapse:colapso;
+                                    padding:0px;
+                                    border-radius: 10px;
+                                    font-size: 12px;
+                                    }
+                                    .demo th {
+                                    border: 1px sólido #354259;
+                                    padding:5px;
+                                    text-align:centrar;
+                                    background:#839AA8;
+                                    }
+                                    .demo td {
+                                    border: 1px sólido #354259;
+                                    padding:5px;
+                                    }
+                                </style>
+                            </head>
+                            <div>
+                                <h4>
+                                    <center>Escuela de Conductores Cerca LTDA</center>
+                                    <center>76.018.710-0</center>
+                                    <center>Andres Bello 1180 - Temuco</center>
+                                </h4>
+                                <h4>
+                                    <center>Liquidaciones de Remuneraciones Mes
+                                        <span t-field="o.month"/>
+                                    </center>
+                                </h4>
+                                <br/>
+                                <h5>
+                                    Nombre :
+                                    <span t-field="o.name"/>
+                                    <br/>
+                                    Rut :
+                                    <span t-field="o.rut"/>
+                                    <br/>
+                                    Cargo :
+                                    <span t-field="o.poste"/>
+                                </h5>
+                            </div>
+                            <br/>
+
+                            <div class="row" align="center">
+                                <table width="100%" style="border: 2px solid black" class="demo">
+                                    <thead>
+                                        <tr>
+                                            <th>Haberes</th>
+                                            <th></th>
+                                            <th>Descuentos</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Sueldo Base</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.sale"/>
+                                            </td>
+                                            <td>AFP</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.afp"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Bonificación Imponible</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.bonus"/>
+                                            </td>
+                                            <td>Fonasa</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.fonasa"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Horas Extras</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.extra"/>
+                                            </td>
+                                            <td>Seguro de Cesantia</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.sure"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Gratificación Legal</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.gratuity"/>
+                                            </td>
+                                            <td>Impuesto Unico</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.tax"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cargas Familiares</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.family"/>
+                                            </td>
+                                            <td></td>
+                                            <td style="text-align: right">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Asignación de Locomoción</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.car"/>
+                                            </td>
+                                            <td></td>
+                                            <td style="text-align: right">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Asignación de Colación</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.lunch"/>
+                                            </td>
+                                            <td></td>
+                                            <td style="text-align: right">0</td>
+                                        </tr>
+                                        <tr>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Haberes Imponibles</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.taxi"/>
+                                            </td>
+                                            <td>Descuentos</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.discount"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Haberes No Imponibles</td>
+                                            <td style="text-align: right">
+                                                <span t-field="o.tax_id"/>
+                                            </td>
+                                            <td style="background: #839AA8">Liquido a Pagar</td>
+                                            <td style="background: #839AA8; text-align: right">
+                                                <span t-field="o.pay"/>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            <div>
+                                <p>
+                                    Certifico Haber recibido de Cerca LTDA la remuneracion integra a pagar indicada
+                                    en esta liquidacion no teneniendo cobro alguno que hacer por dichos conceptos.
+                                </p>
+                            </div>
+                            <br/>
+                            <br/>
+                            <br/>
+                            <div>
+                                <h5>
+                                    <center>FIRMA DEL TRABAJADOR</center>
+                                </h5>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <p>
+                                <center>www.cerca.cl - Telefono:(45)2217868 - Mail: cerca@cerca.cl</center>
+                            </p>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

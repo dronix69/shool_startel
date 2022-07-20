@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_certificados_cert_form" model="ir.ui.view">
+            <field name="name">view.certificados.cert.form</field>
+            <field name="model">certificados.cert</field>
+            <field name="arch" type="xml">
+                <form string="Certificados">
+                    <header>
+                        <button name="action_done" type="object" string="Con Deuda" states="A"  class="oe_highlight"/>
+                        <button name="action_confirm" type="object" states="B" string="Entregado" class="oe_highlight"/>
+                        <button name="action_print" type="object" states="C" string="Imprimir Certificado" class="oe_highlight"/>
+                        <field name="state"  widget="statusbar" statusbar_visible="A,B,C"/>
+                    </header>
+                    <sheet>
+                        <br/>
+                        <div style="margin-right: 20px;">
+                            <field name="image" widget="image"  class="oe_avatar"/>
+                        </div>
+                        <div class="oe_title">
+                            <div class="o_row" style="margin-left: 40px;">
+                                <h1>
+                                    <field name="name" default_focus="1"
+                                           domain="[('category_id','=','Estudiantes')]"  options="{'no_open':True,'no_create': True}"
+                                           required="1"/>
+                                </h1>
+                            </div>
+                        </div>
+                        <group name="group_top">
+                            <group col="4" colspan="4">
+                                <field name="customer"/>
+                                <field name="number"/>
+                                <field name="curso_id"/>
+                                <field name="codigo"/>
+                            </group>
+                            <group col="4" colspan="4">
+                                <field name="date_1" widget="date"/>
+                                <field name="certi"/>
+                                <field name="date_2" widget="date"/>
+                                <field name="fact"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Progreso" name="progress">
+                                <field name="progress" widget="gauge"
+                                       options="{'style': 'width:100px; height: 100px;'}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_certificados_cert_tree" model="ir.ui.view">
+            <field name="name">view.certificados.cert.tree</field>
+            <field name="model">certificados.cert</field>
+            <field name="arch" type="xml">
+                <tree string="Certificados" decoration-danger="state == 'B'" decoration-info="state == 'C'">
+                    <field name="name"/>
+                    <field name="customer"/>
+                    <field name="number"/>
+                    <field name="curso_id"/>
+                    <field name="codigo"/>
+                    <field name="date_1" optional="show"/>
+                    <field name="date_2" optional="show"/>
+                    <field name="certi" optional="show"/>
+                    <field name="fact" optional="show"/>
+                    <field name="activity_ids" widget="list_activity"/>
+                    <field name="state" decoration-danger="state == 'B'" decoration-info="state == 'C'" widget="badge"/>
+                    <field name="progress" widget="progressbar"/>
+                </tree>
+            </field>
+        </record>
+
+         <record id="view_certificados_cert_kanban" model="ir.ui.view">
+            <field name="name">view.certificados.cert.kanban</field>
+            <field name="model">certificados.cert</field>
+            <field name="arch" type="xml">
+                <kanban class="o_certificados_cert_kanban">
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="customer"/>
+                    <field name="number"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar"
+                                         t-att-src="kanban_image('certificados.cert', 'image', record.id.raw_value)"/>
+                                </div>
+                                <div class="oe_kanban_details">
+                                    <strong class="text-red">
+                                        <field name="name"/>
+                                    </strong>
+                                     <div t-if="record.customer.value">
+                                        <t t-esc="record.customer.value"/>
+                                    </div>
+                                    <div t-if="record.number.value">
+                                        <t t-esc="record.number.value"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="view_certificados_cert_search" model="ir.ui.view">
+            <field name="name">view.certificados.cert.search</field>
+            <field name="model">certificados.cert</field>
+            <field name="arch" type="xml">
+                <search string="Filtrar certificados">
+                    <field name="name"/>
+                    <field name="customer"/>
+                    <field name="number"/>
+                    <field name="date_1"/>
+                    <group expand="0" string="Group By">
+                        <filter name="groupby_number" string="Tipo" domain="[]" context="{'group_by':'number'}"
+                                help="Agrupar por tipo"/>
+                        <filter name="groupby_date_1" string="Fecha" context="{'group_by':'date_1:year'}"
+                                help="Agrupar por fecha"/>
+                    </group>
+                    <!--<filter name="filter_by_done" string="Realizada" domain="[('done','=','True')]"
+                            help="Certificados Realizados"/>-->
+                </search>
+            </field>
+        </record>
+
+
+    </data>
+</odoo>
+
+
+
+
+
+

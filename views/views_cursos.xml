@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Creacion de cursos  -->
+
+        <record id="view_cert_cursos_form" model="ir.ui.view">
+            <field name="name">cursos.form</field>
+            <field name="model">cert.cursos</field>
+            <field name="arch" type="xml">
+                <form string="Cursos">
+                    <sheet>
+                        <separator string="CREAR CURSO"/>
+                        <div class="oe_title">
+                             <h1>
+                                <field name="name"  readonly="1"/>
+                             </h1>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="number" string="Curso" required="1"/>
+                            <field name="date"/>
+                            <field name="codigo"/>
+                            <field name="modal_id" required="1"/>
+                            <field name="fridname" widget="selection" domain="[('job_title','=','Vendedores')]"/>
+                            <field name="secuencia" />
+                        </group>
+                        <notebook colspan="4">
+                            <page string="Student">
+                                <field name="student" nolabel="1" colspan="4" readonly="1"/>
+                             </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_cert_cursos_tree" model="ir.ui.view">
+            <field name="name">cursos.tree</field>
+            <field name="model">cert.cursos</field>
+            <field name="arch" type="xml">
+                <tree string="Cursos">
+                    <field name="secuencia"/>
+                    <field name="name"/>
+                    <field name="number"/>
+                    <field name="codigo"/>
+                    <field name="date"/>
+                    <field name="fridname" widget="many2one_avatar"/>
+                    <field name="modal_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <!--Form pdf -->
+
+            <record id="view_imagen_pdf_form" model="ir.ui.view">
+            <field name="name">imagen.pdf.form</field>
+            <field name="model">imagen.pdf</field>
+            <field name="arch" type="xml">
+                <form string="Imagenes">
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="img" widget="image" style="width: 50%; padding-top: 5px;"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        //from para el modulo de nomina de los empleados//
+        <record id="view_cert_nomina_form" model="ir.ui.view">
+            <field name="name">nomina.form</field>
+            <field name="model">cert.nomina</field>
+            <field name="arch" type="xml">
+                <form string="Nomina">
+                    <sheet>
+                        <separator string="CREAR LIQUIDACIÓN"/>
+                        <div class="oe_title">
+                             <h1>
+                                <field name="name"/>
+                             </h1>
+                        </div>
+                        <group col="4">
+                            <field name="rut"/>
+                            <field name="poste"/>
+                            <field name="date"/>
+                            <field name="month" required="1"/>
+                        </group>
+
+                        <group col="4">
+                            <field name="sale"/>
+                            <field name="afp_id"/>
+                            <field name="bonus"/>
+                            <field name="afp"/>
+                            <field name="extra"/>
+                            <field name="fonasa"/>
+                            <field name="gratuity"/>
+                            <field name="sure"/>
+                        </group>
+                        <group col="4" colspan="4">
+                            <field name="family"/>
+                            <field name="tax"/>
+                            <field name="car"/>
+                            <field name="lunch"/>
+                        </group>
+                        <group col="4" colspan="4">
+                            <field name="taxi"/>
+                            <field name="discount"/>
+                            <field name="tax_id"/>
+                            <field name="pay"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_cert_nomina_tree" model="ir.ui.view">
+            <field name="name">nomina.tree</field>
+            <field name="model">cert.nomina</field>
+            <field name="arch" type="xml">
+                <tree string="Nomina">
+                    <field name="name"/>
+                    <field name="rut"/>
+                    <field name="poste" optional="hide"/>
+                    <field name="month"/>
+                    <field name="sale"/>
+                    <field name="afp"/>
+                    <field name="fonasa" optional="hide"/>
+                    <field name="sure" optional="hide"/>
+                    <field name="gratuity" optional="hide"/>
+                    <field name="taxi" optional="hide"/>
+                    <field name="discount"/>
+                    <field name="pay"/>
+                </tree>
+            </field>
+        </record>
+
+    </data>
+</odoo>
+
+
+
+
+
+

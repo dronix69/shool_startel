@@ -1,0 +1,55 @@
+<odoo>
+    <data>
+        <report id="reporte_certificado_cert"
+                string="Imprimir Certificado"
+                model="certificados.cert"
+                report_type="qweb-pdf"
+                menu="False"
+                name="shool_startel.report_cert_template"
+                print_report_name="'Certificado - %s' % (object.name)"
+        />
+
+
+        <template id="report_cert_template">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.basic_layout">
+                        <div class="page">
+                            <span style="position: absolute; top: 197px; left: 295px;" ><h4>CERCA LTDA.</h4></span>
+                            <span style="position: absolute; top: 230px; left: 168px;" >Centro de Est Regionales y Capacitación Ltda.</span>
+                            <span style="position: absolute; top: 230px; left: 537px;" ><h6>76.016.710-0</h6></span>
+                            <span style="position: absolute; top: 256px; left: 192px;" >ANDRES BELLO 1180</span>
+                            <span style="position: absolute; top: 286px; left: 136px;" >TEMUCO</span>
+                            <span style="position: absolute; top: 286px; left: 551px;" >NOVENA</span>
+                            <span style="position: absolute; top: 307px; left: 405px;" >238</span>
+                            <span style="position: absolute; top: 307px; left: 560px;" >28-03-2014</span>
+                            <span style="position: absolute; top: 341px; left: 405px;" >260</span>
+                            <span style="position: absolute; top: 341px; left: 560px;" >02-04-2014</span>
+                            <span style="position: absolute; top: 442px; left: 189px; font-weight: 900" t-field="o.name"/>
+                            <span style="position: absolute; top: 478px; left: 138px;" t-field="o.customer"/>
+                            <span style="position: absolute; top: 503px; left: 571px;" t-field="o.number"/>
+                            <span style="position: absolute; top: 555px; left: 297px;" >REGULAR</span>
+                            <span style="position: absolute; top: 579px; left: 553px;" >NOVENA</span>
+                            <span style="position: absolute; top: 611px; left: 189px;" >ANDRES BELLO 1180</span>
+                            <span style="position: absolute; top: 635px; left: 138px;" >TEMUCO</span>
+                            <span style="position: absolute; top: 635px; left: 552px;" >NOVENA</span>
+                            <span style="position: absolute; top: 669px; left: 245px;" t-field="o.codigo"/>
+                            <span style="position: absolute; top: 669px; left: 470px;" t-field="o.date_1"
+                                  t-options='{"format":"dd-MM-yyyy"}'/>
+                            <span style="position: absolute; top: 669px; left: 561px;" t-field="o.date_2"
+                                  t-options='{"format":"dd-MM-yyyy"}'/>
+                            <span style="position: absolute; top: 747px; left: 143px; font-weight: 900" >JORGE ROMERO FUENTES</span>
+                            <span style="position: absolute; top: 783px; left: 143px; font-weight: 900" >6.886.183-7</span>
+                            <span style="position: absolute; top: 993px; left: 188px;"
+                                  t-esc="context_timestamp(datetime.datetime.now()).strftime('%d')"/>
+                            <span style="position: absolute; top: 993px; left: 296px;"
+                                  t-esc="context_timestamp(datetime.datetime.now()).strftime('%b')"/>
+                            <span style="position: absolute; top: 993px; left: 464px;"
+                                  t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y')"/>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

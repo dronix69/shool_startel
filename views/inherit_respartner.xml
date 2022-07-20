@@ -1,0 +1,43 @@
+<odoo>
+    <record id="new_res_partner_form" model="ir.ui.view">
+        <field name="name">new.res.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='category_id']" position="after">
+                <field name="educa" />
+                <field name="jornal" />
+                <field name="date_ids" widget="date" />
+                <field name="student" options="{'no_open':True,'no_create': True}"/>
+                <field name="curso_ids"/>
+            </xpath>
+        </field>
+    </record>
+
+
+    <record id="nacimiento_partner_form" model="ir.ui.view">
+        <field name="name">nacimiento.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='vat']" position="after">
+                <field name="bdate"/>
+                <field name="student_age"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="cert_partner_form" model="ir.ui.view">
+        <field name="name">cert.partner.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@name='button_box']">
+                <button name="get_cert" type="object" class="oe_stat_button"  icon="fa-certificate" >
+                    <field name="student_count" string="Certificado" widget="statinfo"/>
+                </button>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

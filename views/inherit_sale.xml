@@ -1,0 +1,27 @@
+<odoo>
+    <record id="view_sale_order_form" model="ir.ui.view">
+        <field name="name">view.sale.order.form</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="boleta"/>
+                <field name="ticket_id"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!--<record id="view_hr_employee_order_form" model="ir.ui.view">
+        <field name="name">view.hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <page name="Nomina" position="inside">
+                <page string="Nomina" name="nomina">
+                    <field name="nomina"/>
+                </page>
+            </page>
+        </field>
+    </record>-->
+
+</odoo>

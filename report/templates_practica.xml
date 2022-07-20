@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<odoo>
+    <data>
+        <report id="reporte_alumno_cert"
+                string="Ticket de Practicas"
+                model="cert.alumno"
+                report_type="qweb-pdf"
+                name="shool_startel.diseno_reporte_alumno_cert"
+        />
+
+
+        <template id="diseno_reporte_alumno_cert">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <div>
+                                <center>
+                                    <img style="width: 10%" t-attf-src="data:image/*;base64,{{o.image}}"/>
+                                </center>
+                                <h3>
+                                    <center>
+                                        <span t-field="o.name_id"/>
+                                    </center>
+                                </h3>
+                            </div>
+                            <div>
+                                <p>
+                                    Referencia :
+                                    <span t-field="o.reference"/>
+                                    <br/>
+                                    Instructor :
+                                    <span t-field="o.employee_ids"/>
+                                    <br/>
+                                    Fecha :
+                                    <span t-field="o.date"/>
+                                    <br/>
+                                    Total Prácticas :
+                                    <span t-field="o.clase_id"/>
+                                </p>
+                            </div>
+                            <table class="table table-sm" >
+                                <thead>
+                                    <tr>
+                                        <th width="auto" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span>Alumno</span>
+                                        </th>
+                                        <th width="auto" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span>Rut</span>
+                                        </th>
+                                        <th width="auto" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span>Teléfono</span>
+                                        </th>
+                                        <th width="auto" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span>Nº</span>
+                                        </th>
+                                        <th width="auto" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span>Fecha</span>
+                                        </th>
+                                        <th width="auto" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span>Termino</span>
+                                        </th>
+                                        <th width="auto" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span>Firma del Alumno</span>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <br/>
+                                <tbody class="sale_tbody">
+                                    <tr t-foreach='o.student' t-as='line'>
+                                        <td style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span t-field="line.name"/>
+                                        </td>
+                                        <td style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span t-field="line.ward"/>
+                                        </td>
+                                        <td style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span t-field="line.fhone"/>
+                                        </td>
+                                        <td class="text-right" style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span t-field="line.lessons"/>
+                                        </td>
+                                        <td style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span t-field="line.date_first"/>
+                                        </td>
+                                        <td style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+                                            <span t-field="line.date_last"/>
+                                        </td>
+                                        <td style="border: 1px !important; border-style: solid !important; border-collapse: collapse !important;">
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br/>
+                            <br/>
+                            <div>
+                                <p>
+                                    <b>NOTA:</b>
+                                    AVISAR CON 48 HORAS, DE ANTICIPACIÓN CUALQUIER MODIFICACIÓN DE ESTE CALENDARIO.
+                                </p>
+                                <br/>
+                                <p>
+                                    <center>
+                                        <b>45 22 17 868</b>
+                                    </center>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

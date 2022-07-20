@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <report id="reporte_matricula_cert"
+            string="Contrato Curso Profesional"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="shool_startel.contrato_reporte_matricula_cert"
+
+        />
+
+        <template id="contrato_reporte_matricula_cert">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <head>
+                                <style>
+                                    p {
+                                    text-align: justify;
+                                    margin-right: 30px;
+                                    margin-left: 30px;
+                                    font-size: 12px;
+                                    }
+                                    tr {
+                                    font-size: 11px;
+                                    }
+                                </style>
+                            </head>
+                            <div>
+                                <h2>
+                                    <center>CONTRATO DE PRESTACIÓN DE SERVICIOS</center>
+                                </h2>
+                                <h5>
+                                    <center>Centro de Estudios Regionales y de Capacitación Ltda.</center>
+                                </h5>
+                            </div>
+                            <br/>
+
+                                <p>En Temuco con fecha:
+                                    <span t-field="o.date_ids"/>
+                                    Entre
+                                    <b>Cerca Ltda. RUT Nº 76.018.710-0,</b> _ giro de su denominación representada
+                                    legalmente por su firmante ambos domiciliados para estos efectos en Andres Bello
+                                    No 1180, Comuna Temuco, en adelante la , “Escuela de conductores Profesionales Cerca
+                                    ” y don/doña:
+                                    <b>
+                                        <span t-field="o.name"/>
+                                    </b>
+                                    C. Identidad:
+                                    <b>
+                                        <span t-field="o.vat"/>
+                                    </b>
+                                   <!-- Nacionalidad:
+                                    <b>
+                                        <span t-field="o.country_id"/>
+                                    </b>-->
+                                    Domiciliado en:
+                                    <b>
+                                        <span t-field="o.city"/>
+                                    </b>
+                                    Comuna:
+                                    <b>
+                                        <span t-field="o.state_id"/>
+                                    </b>
+                                    Fono:
+                                    <b>
+                                        <span t-field="o.phone"/>
+                                    </b>
+                                    email:
+                                    <b>
+                                        <span t-field="o.email"/>
+                                    </b>
+                                    en
+                                    adelante el postulante se ha convenido el siguiente contrato de prestación de
+                                    servicios:
+                                </p>
+                                <p>
+                                    <b>PRIMERO: CERCA LTDA.,</b> es una institucion de capacitacion reconocida por el
+                                    Ministerio de Transportes y Telecomunicaciones segun RES Ex 178 de 2005 y 145 de
+                                    2006, para impartir los conociminetos, destrezas y habilidades necesarias para que
+                                    los egresados puedan optar a una Licencia de Conductor Profesional. regida por el
+                                    Decreto 251 de la Subsecretaria de Transporte de 9 de octubre de 1998 y publicada
+                                     en el Diario Oficial el 9 de febrero de 1999
+                                </p>
+                                <p>
+                                    <b>SEGUNDO:</b>El Postulante deja constancia que esta en conocimiento que la ley Nº
+                                    19.495 publicada en el Diario Oficial el 8 de marzo de 1997 y vigente a partir del 8
+                                    de marzo de 2000, que establece en su articulo 13, Nº5 lo siguiente:<b>"Acreditar en
+                                    caso de clase A-3, haber estado en posesión, durante a lo menos dos años, de la
+                                    licencia Clase A-2 o Clase A-1. Tratándose de la Clase A-5, haber estado en posesión
+                                    durante a lo menos dos años, de la Licencia Clase A-4 o Clase A-2"</b>. Como consecuencias
+                                    de lo anterior, no obstante que se impartiera el curso para la Licencia A-3 y/o A-5,
+                                    el Certificado de Casa Moneda le será entregado siempre y cuando haya cumplido con
+                                    la antiguedad antes referida, hecho que se acreditará mediante Hoja de Vida del
+                                    Conductor vigente.
+                                </p>
+                                <p>
+                                    <b>TERCERO: CERCA Ltda.,</b> impartirá el curso para optar a la Licencia Profesional
+                                    Clase <b><span t-field="o.curso_ids"/></b>, aprobado por el Ministerio de Transporte
+                                    y Telecomunicaciones según las resoluciones correspondientes.
+                                </p>
+                                <p>
+                                    <b>CUARTO:</b> El postulante se compromete a asistir a clases en el siguiente Horario:
+                                    <b><span t-field="o.jornal"/></b> Para dar cumplimiento a lo establecido en el
+                                    D.S 215/98, articulo 12, Nº4, que señala que "La asistencia de los alumnos deberá
+                                    ser como minimo de un 80% a las horas teóricas y 100% a las horas de prácticas".
+                                    Las Prácticas de Conducción se realizarán en horario alterno al de las clases teóricas.
+                                </p>
+                                <p>
+                                    <b>QUINTO:</b>El Programa de Estudios es el siguiente:
+                                </p>
+
+                            <div class="row" align="center">
+                                <table width="70%" style="border: 2px solid black">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Modulos</th>
+                                            <th>Equipamiento</th>
+                                         </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1.</td>
+                                            <td>Legislación de Transito</td>
+                                            <td>Gabinete psicotécnico, proyector,video,DVD,TV</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2.</td>
+                                            <td>Legislación de Transporte</td>
+                                            <td>taller de Mecánica, Laboratorio de computación</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3.</td>
+                                            <td>Combate de Incendios</td>
+                                            <td>Software para los diferentes módulos entre otros.</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4.</td>
+                                            <td>Prevencion de Riesgo</td>
+                                            <td>#</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5.</td>
+                                            <td>Relaciones Humanas</td>
+                                            <td>Cuerpo Docente:</td>
+                                        </tr>
+                                        <tr>
+                                            <td>6.</td>
+                                            <td>Primeros Auxilios</td>
+                                            <td>Abogados, Psicólogos, Asistentes Sociales</td>
+                                        </tr>
+                                        <tr>
+                                            <td>7.</td>
+                                            <td>Mecánica Básica</td>
+                                            <td>Expertos en Prevención de Riesgos, Auxiliares</td>
+                                        </tr>
+                                        <tr>
+                                            <td>8.</td>
+                                            <td>Infraestructura Rural</td>
+                                            <td>Paramedicos, Instructores Autorizados</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div><br/>
+                            <p>
+                                <b>SEXTO:</b> El valor del curso es la suma de :_______________, que se cancela de la
+                                siguiente manera, al contado $ ________________ y en un Nª de cuotas: _______________,
+                                este pago queda asociado al Nª de boleta: __________________, lo que deja en saldo el
+                                monto de : ______________________.
+                            </p>
+                            <p>
+                                <b>SEPTIMO:</b> El postulante declara estar en conocimiento que el Certificado final de
+                                aprobación del curso sólo será entregado una vez que el curso esté integramente aprobado
+                                y cancelado. Los valores correspondientes a los exámenes, psicológicos y psicotécnico
+                                están incluidos en la suma aqui pactada, sin embargo, en el evento que el postulante
+                                reprobes dicho exámenes o desistiera de la ejecución del mismo, pagará la suma de $ 25.000
+                                cantidad que será imputada a cualquiere suma que hubiere pagado anticipado.
+                            </p>
+                            <p>
+                                <b>OCTAVO:</b> Para todos los efectos, las partes fijan domicilio en la ciudad de Temuco.
+                            </p>
+                            <p>
+                                <b>NOVENO:</b> El presente contrato se firma en duplicado quedando la primera copia para
+                                el interesado, la segunada para la carpeta individual del Alumno.
+                            </p>
+                            <p>
+                                <b>NOMBRE ALUMNO: <span t-field="o.name"/></b>
+                            </p>
+                            <p>
+                                <b>FIRMA ALUMNO:
+                                    <img style="width: 30%" t-attf-src="data:image/*;base64,{{o.digital_signature}}"/></b>
+
+                            </p>
+                            <p>
+                                <b>REPRESENTANTE ESCUELA________________________________________________</b>
+                            </p>
+
+                         </div>
+                        <div class="footer">
+                            <p><center>www.cerca.cl</center></p>
+                        </div>
+                     </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

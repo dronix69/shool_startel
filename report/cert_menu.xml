@@ -1,0 +1,46 @@
+<odoo>
+    <data>
+       <!--<record id="action_form_cert" model="ir.actions.report">
+            <field name="name">Certificado Profesional</field>
+            <field name="model">certificados.cert</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">certificados.report_cert_template</field>
+            <field name="report_file">certificados.report_cert_template</field>
+            <field name="binding_model_id" ref="certificados.model_certificados_cert"/>
+            <field name="attachment_use" eval="True"/>
+            <field name="print_report_name">'Certificado - %s' % (object.name)</field>
+       </record>
+
+        <record id="reporte_matricula_cert" model="ir.actions.report">
+            <field name="name">Contrato Clase Profesional</field>
+            <field name="model">res.partner</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">shool_startel.contrato_reporte_matricula_cert</field>
+            <field name="report_file">shool_startel.contrato_reporte_matricula_cert</field>
+            <field name="binding_model_id" ref="base.view_partner_form"/>
+            <field name="print_report_name">'Contrato - %s' % (object.name)</field>
+       </record>
+
+       <record id="reporte_matricula_clase_b" model="ir.actions.report">
+            <field name="name">Contrato Clase B</field>
+            <field name="model">cert.matricula</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">certificados.contrato_reporte_matricula_clase</field>
+            <field name="report_file">certificados.contrato_reporte_matricula_clase</field>
+            <field name="binding_model_id" ref="certificados.model_cert_matricula"/>
+            <field name="attachment_use" eval="True"/>
+            <field name="print_report_name">'Contrato B - %s' % (object.name)</field>
+       </record>-->
+
+
+        <record id="report_patient_card" model="ir.actions.report">
+            <field name="name">Card Alumno</field>
+            <field name="model">res.partner</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">shool_startel.report_patient_id_card</field>
+            <field name="report_file">shool_startel.report_patient_id_card</field>
+            <field name="binding_model_id" ref="base.view_partner_form"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

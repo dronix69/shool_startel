@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <report id="reporte_card"
+            string="Imprimir Card"
+            model="res.partner"
+            report_type="qweb-pdf"
+            name="shool_startel.report_patient_id_card"
+
+    />
+
+    <template id="report_patient_id_card">
+        <t t-foreach="docs" t-as="o">
+            <t t-call="web.basic_layout">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <div class="row">
+                        <div class="col-xs-8">
+                            <table  width="45%" height="50px" class="table table-condensed" style="border: 3px solid black !important;">
+                                <tr>
+                                    <td width="40%">
+                                        <p style="text-align:center;padding-top:10px;">
+                                            <img t-if="not o.image_1920"
+                                                 t-att-src="'/web/static/src/img/placeholder.png'" height="140"
+                                                 border="1" width="120"/>
+                                            <img t-if="o.image_1920"
+                                                 t-att-src="'data:image/png;base64,%s' % to_text(o.image_1920)"
+                                                 height="140" border="1" width="120"/>
+                                        </p>
+                                    </td>
+                                    <td width="60%">
+                                        <table>
+                                            <tr>
+                                                <td colspan="3" class="text-center" style="font-weight:bold;">
+                                                    <span t-field="o.name"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Rut:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>:</span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.vat"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Teléfono:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>:</span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.phone"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <span>
+                                                        <strong>Curso:</strong>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <span>:</span>
+                                                </td>
+                                                <td>
+                                                    <span t-field="o.curso_ids"/>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                        <p style="font-size:small;" class="text-center">
+                                            www.cerca.cl - (56)976670044
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </t>
+    </template>
+
+</odoo>
