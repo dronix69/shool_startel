@@ -11,4 +11,16 @@ class  CertSaleOrder(models.Model):
     
 
 
+class HrContract(models.Model):
+    _inherit = 'hr.contract'
+    _description = 'Employee Contract'
+
+
+    sale = fields.Integer(string='Sueldo Base', required=True)
+    afp = fields.Selection(
+        [('capital', 'Capital'), ('cuprum', 'Cuprum'), ('habitatK', 'Habitat'),
+         ('vital', 'P Vital'), ('provida', 'Provida'), ('modelo', 'Modelo'), ('uno', 'Uno') ], string='AFP')
+    afp_id = fields.Float(string='Fondo AFP', required=True)
+
+
 

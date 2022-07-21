@@ -86,6 +86,7 @@
                             <field name="rut"/>
                             <field name="poste"/>
                             <field name="date"/>
+                            <field name="contract_id"/>
                             <field name="month" required="1"/>
                         </group>
 
@@ -109,7 +110,7 @@
                             <field name="taxi"/>
                             <field name="discount"/>
                             <field name="tax_id"/>
-                            <field name="pay"/>
+                            <field name="pay" sum="Total"/>
                         </group>
                     </sheet>
                     <div class="oe_chatter">

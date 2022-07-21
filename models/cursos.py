@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import datetime
+from datetime import date
+from dateutil.relativedelta import relativedelta
+
 from odoo import api, fields, models, _
-import re
-import datetime
+from odoo.exceptions import ValidationError
+
+from odoo.osv import expression
 
 
 class CursCert(models.Model):
@@ -49,12 +52,12 @@ class NominaCert(models.Model):
     rut = fields.Char(string='Rut', related="name.identification_id")
     poste = fields.Char(related='name.job_title', string='Puesto de Trabajo')
     date = fields.Date('Fecha', default=fields.Date.today())
-    sale = fields.Integer(string='Sueldo Base')
+    sale = fields.Integer(string='Sueldo Base', related='contract_id.sale')
     bonus = fields.Integer(string='Bonificación Imponible')
     extra = fields.Integer(string='Horas Extras')
     gratuity = fields.Integer(string='Gratificación Legal', compute='_gratuity')
     afp = fields.Integer(string='AFP', compute='_afp')
-    afp_id = fields.Float(string='Fondo AFP %')
+    afp_id = fields.Float(string='Fondo AFP %', related='contract_id.afp_id')
     fonasa = fields.Integer(string='Fonasa', compute='_fonasa')
     sure = fields.Integer(string='Seguro de Cesantia', compute='_sure')
     tax = fields.Integer(string='Impuesto Unico')
@@ -69,6 +72,11 @@ class NominaCert(models.Model):
     month = fields.Selection([('E', 'Enero'), ('F', 'Febrero'), ('M', 'Marzo'), ('A', 'Abril'), ('Z', 'Mayo'),
                               ('J', 'Junio'), ('X', 'Julio'), ('B', 'Agosto'), ('S', 'Septiembre'), ('O', 'Octubre'),
                               ('N', 'Noviembre'), ('D', 'Diciembre')], default='E')
+
+    contract_id = fields.Many2one('hr.contract', string='Contracto', required=True)
+
+
+
 
     @api.depends('sale','bonus','extra')
     def _gratuity(self):
