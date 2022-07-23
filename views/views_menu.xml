@@ -20,7 +20,7 @@
             <field name="name">Nomina</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">cert.nomina</field>
-            <field name="view_mode">tree,form</field>
+            <field name="view_mode">tree,form,pivot</field>
         </record>
 
         <record id="action_cert_compras_view" model="ir.actions.act_window">

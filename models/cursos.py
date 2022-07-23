@@ -52,13 +52,13 @@ class NominaCert(models.Model):
     rut = fields.Char(string='Rut', related="name.identification_id")
     poste = fields.Char(related='name.job_title', string='Puesto de Trabajo')
     date = fields.Date('Fecha', default=fields.Date.today())
-    sale = fields.Integer(string='Sueldo Base', related='contract_id.sale')
+    sale = fields.Integer(string='Sueldo Base', related='contract_id.sale', store=True)
     bonus = fields.Integer(string='Bonificación Imponible')
     extra = fields.Integer(string='Horas Extras')
     gratuity = fields.Integer(string='Gratificación Legal', compute='_gratuity')
-    afp = fields.Integer(string='AFP', compute='_afp')
+    afp = fields.Integer(string='AFP', compute='_afp', store=True)
     afp_id = fields.Float(string='Fondo AFP %', related='contract_id.afp_id')
-    fonasa = fields.Integer(string='Fonasa', compute='_fonasa')
+    fonasa = fields.Integer(string='Fonasa', compute='_fonasa', store=True)
     sure = fields.Integer(string='Seguro de Cesantia', compute='_sure')
     tax = fields.Integer(string='Impuesto Unico')
     family = fields.Integer(string='Cargas Familiares')
@@ -68,10 +68,10 @@ class NominaCert(models.Model):
     taxi = fields.Integer(string='Haberes Imponibles', compute='_taxi')
     tax_id = fields.Integer(string='Haberes No Imponibles', compute='_tax_id')
     discount = fields.Integer(string='Descuentos', compute='_discount')
-    pay = fields.Integer(string='Liquido a Pagar', compute='_pay')
+    pay = fields.Integer(string='Liquido a Pagar', compute='_pay', store=True)
     month = fields.Selection([('E', 'Enero'), ('F', 'Febrero'), ('M', 'Marzo'), ('A', 'Abril'), ('Z', 'Mayo'),
                               ('J', 'Junio'), ('X', 'Julio'), ('B', 'Agosto'), ('S', 'Septiembre'), ('O', 'Octubre'),
-                              ('N', 'Noviembre'), ('D', 'Diciembre')], default='E')
+                              ('N', 'Noviembre'), ('D', 'Diciembre')], default=' ')
 
     contract_id = fields.Many2one('hr.contract', string='Contracto', required=True)
 
@@ -117,3 +117,5 @@ class NominaCert(models.Model):
     def _pay(self):
         for r in self:
             r.pay = r.taxi+r.tax_id-r.discount
+
+

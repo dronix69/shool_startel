@@ -100,13 +100,13 @@
                             <field name="gratuity"/>
                             <field name="sure"/>
                         </group>
-                        <group col="4" colspan="4">
+                        <group col="4">
                             <field name="family"/>
                             <field name="tax"/>
                             <field name="car"/>
                             <field name="lunch"/>
                         </group>
-                        <group col="4" colspan="4">
+                        <group col="4">
                             <field name="taxi"/>
                             <field name="discount"/>
                             <field name="tax_id"/>
@@ -141,6 +141,19 @@
                     <field name="discount"/>
                     <field name="pay"/>
                 </tree>
+            </field>
+        </record>
+
+
+        <record id="view_cert_nomina_pivot" model="ir.ui.view">
+            <field name="model">cert.nomina</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="name" type="row"/>
+                    <field name="sale"/>
+                    <field name="afp"/>
+                    <field name="fonasa"/>
+                </pivot>
             </field>
         </record>
 
