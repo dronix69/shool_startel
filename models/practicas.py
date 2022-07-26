@@ -8,7 +8,7 @@ import re
 
 class CertPracticas(models.Model):
     _name = 'cert.practicas'
-    _description = 'Crea un registro de las citas a practicas de conduccion'
+    _description = 'Registro Practicas'
 
     @api.depends("date_first", "date_last")
     def _compute_duration(self):
@@ -69,7 +69,7 @@ class CertPracticas(models.Model):
 class CertAlumno(models.Model):
     _name = 'cert.alumno'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = 'Crear registro de alumno para tomar hora de practicas'
+    _description = 'Registro Alumno'
 
     reference = fields.Char(string='Reference', required=True, copy=False, readonly=True,
                        default=lambda self: _('New'))
@@ -109,7 +109,7 @@ class CertAlumno(models.Model):
 
 class CertInstructor(models.Model):
     _name = 'cert.instructor'
-    _descripcion = 'Registro de los instructores'
+    _descripcion = 'Registro Instructores'
 
 
     name = fields.Char(string='Nombre', required=True )

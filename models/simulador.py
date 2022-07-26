@@ -9,7 +9,7 @@ import re
 class CertSimulador(models.Model):
     _name = 'cert.simulador'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = 'Crea un registro para las practicas del simuldor'
+    _description = 'Registro simuldor'
 
     name = fields.Char(string='Nombre Alumno')
     practice = fields.Integer(string='Nº Practica', required=True)
@@ -29,7 +29,7 @@ class CertSimulador(models.Model):
 
 class CertCodigo(models.Model):
     _name = 'cert.codigo'
-    _description = 'Crear numero de codigo del Alumno'
+    _description = 'Crear codigo'
 
     name = fields.Char(string='Numero del Codigo', required=True)
     name_last = fields.Char(string='Nombre', required=True)

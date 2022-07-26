@@ -8,7 +8,7 @@ import re
 class CertCompras(models.Model):
     _name = 'cert.compras'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = 'Lleva un registro de las compras realizadas por la escuela'
+    _description = 'Modulo Compras'
 
 
     name = fields.Char(string='Boleta', required=True)

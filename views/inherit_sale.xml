@@ -48,13 +48,12 @@
                         <field name="afp_id" nolabel="1"/>
                         <span>/ %</span>
                     </div>
-                    <!--<label for="meal_allowance"/>
+                    <label for="gratuity"/>
                     <div class="o_row">
-
-                        <field name="meal_allowance" nolabel="1"/>
+                        <field name="gratuity" nolabel="1"/>
                         <span>/ month</span>
                     </div>
-                    <label for="medical_allowance"/>
+                    <!--<label for="medical_allowance"/>
                     <div class="o_row">
 
                         <field name="medical_allowance" nolabel="1"/>

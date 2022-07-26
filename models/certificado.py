@@ -5,7 +5,7 @@ import datetime
 class Cert(models.Model):
     _name = 'certificados.cert'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = ' Registro de Certificado de cursos profesionales'
+    _description = ' Registro de Certificado'
 
     def action_confirm(self):
         for rec in self:

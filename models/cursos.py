@@ -11,7 +11,7 @@ from odoo.osv import expression
 
 class CursCert(models.Model):
     _name = 'cert.cursos'
-    _description = 'Crear registro de los cursos'
+    _description = 'Registro Cursos'
 
     secuencia = fields.Integer(string='Total Alumno')
     name = fields.Char(string='Order Reference', required=True, copy=False, readonly=True,
@@ -46,7 +46,7 @@ class ImagenPdf(models.Model):
 class NominaCert(models.Model):
     _name = 'cert.nomina'
     _inherit = ['mail.thread', 'mail.activity.mixin']
-    _description = 'Modulo para llevar un control de los pagos a los Empleados'
+    _description = 'Nomina Empleados'
 
     name = fields.Many2one('hr.employee', string='Empleados', required=True,)
     rut = fields.Char(string='Rut', related="name.identification_id")
@@ -55,7 +55,7 @@ class NominaCert(models.Model):
     sale = fields.Integer(string='Sueldo Base', related='contract_id.sale', store=True)
     bonus = fields.Integer(string='Bonificación Imponible')
     extra = fields.Integer(string='Horas Extras')
-    gratuity = fields.Integer(string='Gratificación Legal', compute='_gratuity')
+    gratuity = fields.Integer(string='Gratificación Legal', related='contract_id.gratuity')
     afp = fields.Integer(string='AFP', compute='_afp', store=True)
     afp_id = fields.Float(string='Fondo AFP %', related='contract_id.afp_id')
     fonasa = fields.Integer(string='Fonasa', compute='_fonasa', store=True)
@@ -78,10 +78,10 @@ class NominaCert(models.Model):
 
 
 
-    @api.depends('sale','bonus','extra')
-    def _gratuity(self):
-        for r in self:
-            r.gratuity = 25*(r.sale+r.bonus+r.extra)/100
+    #@api.depends('sale','bonus','extra')
+    #def _gratuity(self):
+    #    for r in self:
+    #        r.gratuity = 25*(r.sale+r.bonus+r.extra)/100
 
     @api.depends('sale','bonus','extra','gratuity')
     def _taxi(self):
