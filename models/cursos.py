@@ -55,7 +55,7 @@ class NominaCert(models.Model):
     sale = fields.Integer(string='Sueldo Base', related='contract_id.sale', store=True)
     bonus = fields.Integer(string='Bonificación Imponible')
     extra = fields.Integer(string='Horas Extras')
-    gratuity = fields.Integer(string='Gratificación Legal', related='contract_id.gratuity')
+    gratuity = fields.Integer(string='Gratificación Legal', compute='_gratuity')
     afp = fields.Integer(string='AFP', compute='_afp', store=True)
     afp_id = fields.Float(string='Fondo AFP %', related='contract_id.afp_id')
     fonasa = fields.Integer(string='Fonasa', compute='_fonasa', store=True)
@@ -75,14 +75,15 @@ class NominaCert(models.Model):
 
     contract_id = fields.Many2one('hr.contract', string='Contracto', required=True)
 
-
-
-
-    #@api.depends('sale','bonus','extra')
-    #def _gratuity(self):
-    #    for r in self:
-    #        r.gratuity = 25*(r.sale+r.bonus+r.extra)/100
-
+    @api.depends('sale', 'bonus', 'extra')
+    def _gratuity(self):
+        for r in self:
+            gratuity = 0.25*(r.sale+r.bonus+r.extra)
+            if gratuity <= 220000:
+                r.gratuity = gratuity
+            else:
+                r.gratuity = 220000
+    
     @api.depends('sale','bonus','extra','gratuity')
     def _taxi(self):
         for r in self:

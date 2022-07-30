@@ -21,7 +21,7 @@ class HrContract(models.Model):
         [('capital', 'Capital'), ('cuprum', 'Cuprum'), ('habitatK', 'Habitat'),
          ('vital', 'P Vital'), ('provida', 'Provida'), ('modelo', 'Modelo'), ('uno', 'Uno') ], string='AFP')
     afp_id = fields.Float(string='Fondo AFP', required=True)
-    gratuity = fields.Integer(string='Gratificación Legal', required=True)
+
 
 
 
