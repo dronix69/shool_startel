@@ -75,15 +75,15 @@ class NominaCert(models.Model):
 
     contract_id = fields.Many2one('hr.contract', string='Contracto', required=True)
 
-    @api.depends('sale', 'bonus', 'extra')
+    @api.depends('sale','bonus','extra')
     def _gratuity(self):
         for r in self:
             gratuity = 0.25*(r.sale+r.bonus+r.extra)
-            if gratuity <= 220000:
+            if gratuity <= 150529:
                 r.gratuity = gratuity
             else:
-                r.gratuity = 220000
-    
+                r.gratuity = 150529
+
     @api.depends('sale','bonus','extra','gratuity')
     def _taxi(self):
         for r in self:
