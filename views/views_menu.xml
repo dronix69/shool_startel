@@ -23,6 +23,20 @@
             <field name="view_mode">tree,form,pivot</field>
         </record>
 
+        <record id="action_cert_clases_view" model="ir.actions.act_window">
+            <field name="name">Clases</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cert.clases</field>
+            <field name="view_mode">tree,form,pivot,calendar</field>
+        </record>
+
+        <record id="action_cert_asignatura_view" model="ir.actions.act_window">
+            <field name="name">Asignatura</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cert.asignatura</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
         <record id="action_cert_compras_view" model="ir.actions.act_window">
             <field name="name">Gastos</field>
             <field name="type">ir.actions.act_window</field>
@@ -36,7 +50,6 @@
             <field name="res_model">cert.instructor</field>
             <field name="view_mode">tree,form</field>
         </record>
-
 
         <record id="action_cert_simulador_view" model="ir.actions.act_window">
             <field name="name">Simulador</field>
@@ -86,21 +99,23 @@
         <menuitem id="menu_compras_cert" name="Gastos" parent="menu_certificados_root" sequence="1" action="action_cert_compras_view"/>
         <menuitem id="menu_certificados_cert" name="Certificados" sequence="10" parent="menu_certificados_root" action="action_certificados_cert_view"/>
         <menuitem id="menu_cursos_cert" name="Cursos" sequence="20" parent="menu_certificados_root" action="action_cert_cursos_view"/>
+        <menuitem id="menu_clases_cert" name="Clases" sequence="30" parent="menu_certificados_root" action="action_cert_clases_view"/>
 
 
-        <menuitem id="menu_simulador_root" sequence="30" name="Simulador" parent="menu_certificados_root" />
+        <menuitem id="menu_simulador_root" sequence="40" name="Simulador" parent="menu_certificados_root" />
         <menuitem id="menu_simulador_cert" name="Registro Practica" parent="menu_simulador_root" action="action_cert_simulador_view"/>
         <menuitem id="menu_codigo_cert" name="Codigo Alumno" parent="menu_simulador_root" action="action_cert_codigo_view"/>
 
-        <menuitem id="menu_practicas_root" sequence="40" name="Practicas Conducción" parent="menu_certificados_root" />
+        <menuitem id="menu_practicas_root" sequence="50" name="Practicas Conducción" parent="menu_certificados_root" />
         <menuitem id="menu_practicas_cert" name="Registrar Hora" parent="menu_practicas_root" action="action_cert_practicas_view"/>
         <menuitem id="menu_alumno_cert" name="Registrar Alumno" parent="menu_practicas_root" action="action_cert_alumno_view"/>
 
 
-        <menuitem id="menu_configuracion_root" sequence="50" name="Configuración" parent="menu_certificados_root" />
+        <menuitem id="menu_configuracion_root" sequence="60" name="Configuración" parent="menu_certificados_root" />
         <menuitem id="menu_instructor_cert" name="Instructores" parent="menu_configuracion_root" action="action_cert_instructor_view"/>
         <menuitem id="menu_imagen_pdf" name="Imagen" parent="menu_configuracion_root" action="action_imagen_pdf_view"/>
         <menuitem id="menu_nomina_cert" name="Nomina" parent="menu_configuracion_root" action="action_cert_nomina_view"/>
+        <menuitem id="menu_asignatura_cert" name="Asignaturas" parent="menu_configuracion_root" action="action_cert_asignatura_view"/>
     </data>
 </odoo>
 

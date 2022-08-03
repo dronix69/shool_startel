@@ -69,92 +69,115 @@
             </field>
         </record>
 
-        //from para el modulo de nomina de los empleados//
+        <!--From de Asignatura  -->
 
-        <record id="view_cert_nomina_form" model="ir.ui.view">
-            <field name="name">nomina.form</field>
-            <field name="model">cert.nomina</field>
+        <record id="view_cert_asignatura_form" model="ir.ui.view">
+            <field name="name">asignatura.from</field>
+            <field name="model">cert.asignatura</field>
             <field name="arch" type="xml">
-                <form string="Nomina">
+                <form string="Asignaturas">
                     <sheet>
-                        <separator string="CREAR LIQUIDACIÓN"/>
+                        <separator string="REGISTRAR ASIGANTURAS"/>
                         <div class="oe_title">
                              <h1>
                                 <field name="name"/>
                              </h1>
                         </div>
-                        <group col="4">
-                            <field name="rut"/>
-                            <field name="poste"/>
-                            <field name="date"/>
-                            <field name="contract_id"/>
-                            <field name="month" required="1"/>
-                        </group>
-
-                        <group col="4">
-                            <field name="sale"/>
-                            <field name="afp_id" invisible="True"/>
-                            <field name="bonus"/>
-                            <field name="afp"/>
-                            <field name="extra"/>
-                            <field name="fonasa"/>
-                            <field name="gratuity"/>
-                            <field name="sure"/>
-                        </group>
-                        <group col="4">
-                            <field name="family"/>
-                            <field name="tax"/>
-                            <field name="car"/>
-                            <field name="lunch"/>
-                        </group>
-                        <group col="4">
-                            <field name="taxi"/>
-                            <field name="discount"/>
-                            <field name="tax_id"/>
-                            <field name="pay" sum="Total"/>
+                        <group col="4" colspan="4">
+                            <field name="date_start"/>
+                            <field name="color" widget="color_picker"/>
                         </group>
                     </sheet>
-                    <div class="oe_chatter">
-                        <field name="message_follower_ids"/>
-                        <field name="activity_ids"/>
-                        <field name="message_ids"/>
-                    </div>
                 </form>
             </field>
         </record>
 
-
-        <record id="view_cert_nomina_tree" model="ir.ui.view">
-            <field name="name">nomina.tree</field>
-            <field name="model">cert.nomina</field>
+        <record id="view_cert_asignatura_tree" model="ir.ui.view">
+            <field name="name">asignatura.tree</field>
+            <field name="model">cert.asignatura</field>
             <field name="arch" type="xml">
-                <tree string="Nomina">
+                <tree string="Asignaturas">
                     <field name="name"/>
-                    <field name="rut"/>
-                    <field name="poste" optional="hide"/>
-                    <field name="month"/>
-                    <field name="sale"/>
-                    <field name="afp"/>
-                    <field name="fonasa" optional="hide"/>
-                    <field name="sure" optional="hide"/>
-                    <field name="gratuity" optional="hide"/>
-                    <field name="taxi" optional="hide"/>
-                    <field name="discount"/>
-                    <field name="pay"/>
+                    <field name="date_start"/>
+                    <field name="color" widget="color_picker"/>
                 </tree>
             </field>
         </record>
 
+        <!--Registro de las clases de los Profesores -->
 
-        <record id="view_cert_nomina_pivot" model="ir.ui.view">
-            <field name="model">cert.nomina</field>
+        <record id="view_cert_clases_form" model="ir.ui.view">
+            <field name="name">clases.form</field>
+            <field name="model">cert.clases</field>
+            <field name="arch" type="xml">
+                <form string="Registro de las Clases">
+                    <header>
+                        <button name="action_done" type="object" string="Clase Realizada" states="A"  class="oe_highlight"
+                        confirm="Esta Seguro de que la Clase esta realizada?"/>
+                        <field name="state"  widget="statusbar" statusbar_visible="A,B"/>
+                    </header>
+                    <sheet>
+                        <separator string="Registrar Fecha y Hora"/>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name"/>
+                            </h1>
+                        </div>
+                        <group col="4" colspan="4">
+                            <field name="date_start"/>
+                            <field name="date_stop"/>
+                            <field name="course_id"/>
+                            <field name="duration" widget="float_time"/>
+                        </group>
+                        <group col="4" colspan="4" string="Modulos">
+                            <field name="course" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                        </group>
+                        <newline/>
+                        <separator string="Comentarios" colspan="4"/>
+                        <field name="comment" colspan="4" placeholder="Comentarios"/>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_cert_clases_tree" model="ir.ui.view">
+            <field name="name">clases.tree</field>
+            <field name="model">cert.clases</field>
+            <field name="arch" type="xml">
+                <tree string="Clases" decoration-danger="state == 'A'" decoration-info="state == 'B'">
+                    <field name="name"/>
+                    <field name="date_start"/>
+                    <field name="date_stop"/>
+                    <field name="course_id"/>
+                    <field name="duration" widget="float_time"/>
+                    <field name="state" decoration-danger="state == 'A'" decoration-info="state == 'B'" widget="badge"/>
+                    <field name="course" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_cert_clases_pivot" model="ir.ui.view">
+            <field name="model">cert.clases</field>
             <field name="arch" type="xml">
                 <pivot>
-                    <field name="name" type="row"/>
-                    <field name="sale"/>
-                    <field name="afp"/>
-                    <field name="fonasa"/>
+                    <field name="name" />
+                    <field name="date_start" interval="week"/>
+                    <field name="date_stop" />
+                    <field name="course" type="col"/>
+                    <field name="course_id"/>
+                    <field name="duration"/>
                 </pivot>
+            </field>
+        </record>
+
+        <record id="view_cert_clases_calendar" model="ir.ui.view">
+            <field name="model">cert.clases</field>
+            <field name="arch" type="xml">
+                <calendar date_start="date_start" color="course" event_open_popup="True"
+                          mode="month" quick_add="False" event_limit="6" >
+                    <field name="name" filters="1" avatar_field="image_1920" />
+                    <field name="course"/>
+                </calendar>
             </field>
         </record>
 

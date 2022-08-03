@@ -33,6 +33,7 @@
         'views/views_cursos.xml',
         'views/inherit_respartner.xml',
         'views/inherit_sale.xml',
+        'views/views_nomina.xml',
         'views/views_simulador.xml',
         'views/views_practicas.xml',
         'views/views_compras.xml',

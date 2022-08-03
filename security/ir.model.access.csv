@@ -9,12 +9,16 @@ access_certificados_alumno_usuario,certificados.alumno.usuario,model_cert_alumno
 access_certificados_compras_usuario,certificados.compras.usuario,model_cert_compras,group_shool_startel_usuario,0,0,0,0
 access_certificados_instructor_usuario,certificados.instructor.usuario,model_cert_instructor,group_shool_startel_usuario,1,1,1,1
 access_certificados_nomina_usuario,certificados.nomina.usuario,model_cert_nomina,group_shool_startel_usuario,1,0,0,0
+access_certificados_asignatura_usuario,certificados.asignatura.usuario,model_cert_asignatura,group_shool_startel_usuario,1,1,1,0
+access_certificados_clases_usuario,certificados.clases.usuario,model_cert_clases,group_shool_startel_usuario,1,1,1,0
 ,,,,,,,
 ,,,,,,,
 access_certificados_administration,certificados.administration,model_certificados_cert,group_shool_startel_administration,1,1,1,1
 access_certificados_cursos_administration,certificados.cursos.administration,model_cert_cursos,group_shool_startel_administration,1,1,1,1
 access_certificados_compras_administration,certificados.compras.administration,model_cert_compras,group_shool_startel_administration,1,1,1,1
 access_certificados_nomina_administration,certificados.nomina.administration,model_cert_nomina,group_shool_startel_administration,1,1,1,1
+access_certificados_asignatura_administration,certificados.asignatura.administration,model_cert_asignatura,group_shool_startel_administration,1,1,1,1
+access_certificados_clases_administration,certificados.clases.administration,model_cert_clases,group_shool_startel_administration,1,1,1,1
 ,,,,,,,
 ,,,,,,,
 access_certificados_instructor,certificados.instructor,model_certificados_cert,group_shool_startel_instructor,1,1,1,1
@@ -27,3 +31,5 @@ access_certificados_alumno_instructor,certificados.alumno.instructor,model_cert_
 access_certificados_compras_instructor,certificados.compras.instructor,model_cert_compras,group_shool_startel_instructor,0,0,0,0
 access_certificados_instructor_instructor,certificados.instructor.instructor,model_cert_instructor,group_shool_startel_instructor,0,0,0,0
 access_certificados_nomina_instructor,certificados.nomina.instructor,model_cert_nomina,group_shool_startel_instructor,0,0,0,0
+access_certificados_asignatura_instructor,certificados.asignatura.instructor,model_cert_asignatura,group_shool_startel_instructor,0,0,0,0
+access_certificados_clases_instructor,certificados.clases.instructor,model_cert_clases,group_shool_startel_instructor,1,1,1,0
