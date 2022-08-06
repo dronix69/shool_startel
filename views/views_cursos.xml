@@ -131,6 +131,7 @@
                         </group>
                         <group col="4" colspan="4" string="Modulos">
                             <field name="course" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                            <field name="jornada"/>
                         </group>
                         <newline/>
                         <separator string="Comentarios" colspan="4"/>
@@ -150,6 +151,7 @@
                     <field name="date_stop"/>
                     <field name="course_id"/>
                     <field name="duration" widget="float_time"/>
+                    <field name="jornada"/>
                     <field name="state" decoration-danger="state == 'A'" decoration-info="state == 'B'" widget="badge"/>
                     <field name="course" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 </tree>
@@ -177,6 +179,7 @@
                           mode="month" quick_add="False" event_limit="6" >
                     <field name="name" filters="1" avatar_field="image_1920" />
                     <field name="course"/>
+                    <field name="jornada"/>
                 </calendar>
             </field>
         </record>

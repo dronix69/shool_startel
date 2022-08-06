@@ -57,6 +57,9 @@
                                     <br/>
                                     Cargo :
                                     <span t-field="o.poste"/>
+                                    <br/>
+                                    Dias Trabajados :
+                                    <span t-field="o.days"/>
                                 </h5>
                             </div>
                             <br/>

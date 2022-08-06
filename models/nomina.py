@@ -17,7 +17,7 @@ class NominaCert(models.Model):
     rut = fields.Char(string='Rut', related="name.identification_id")
     poste = fields.Char(related='name.job_title', string='Puesto de Trabajo')
     date = fields.Date('Fecha', default=fields.Date.today())
-    sale = fields.Integer(string='Sueldo Base', related='contract_id.sale', store=True)
+    sale = fields.Integer(string='Sueldo dias Trabajados', compute='_sale', help='Son los Dias que Trabajo el Empleado')
     bonus = fields.Integer(string='Bonificación Imponible')
     extra = fields.Integer(string='Horas Extras')
     gratuity = fields.Integer(string='Gratificación Legal', compute='_gratuity')
@@ -39,15 +39,25 @@ class NominaCert(models.Model):
                               ('N', 'Noviembre'), ('D', 'Diciembre')], default=' ')
 
     contract_id = fields.Many2one('hr.contract', string='Contracto', required=True)
+    days = fields.Integer(string='Dias Trabajados', required=True)
+    sale_id = fields.Integer(string='Sueldo Base', related='contract_id.sale', store=True)
+
+    @api.depends('days','sale_id')
+    def _sale(self):
+        for r in self:
+            her = r.days
+            jer = r.sale_id /30
+            ger = jer * her
+            r.sale = ger
 
     @api.depends('sale','bonus','extra')
     def _gratuity(self):
         for r in self:
             gratuity = 0.25*(r.sale+r.bonus+r.extra)
-            if gratuity <= 150529:
+            if gratuity <= 158333:
                 r.gratuity = gratuity
             else:
-                r.gratuity = 150529
+                r.gratuity = 158333
 
     @api.depends('sale','bonus','extra','gratuity')
     def _taxi(self):
