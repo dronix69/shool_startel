@@ -48,7 +48,10 @@ class NominaCert(models.Model):
             her = r.days
             jer = r.sale_id /30
             ger = jer * her
-            r.sale = ger
+            if her <= 30:
+                r.sale = ger
+            else:
+                r.sale = 0
 
     @api.depends('sale','bonus','extra')
     def _gratuity(self):
