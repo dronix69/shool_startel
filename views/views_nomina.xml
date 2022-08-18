@@ -35,6 +35,8 @@
                             <field name="extra"/>
                             <field name="sure"/>
                             <field name="gratuity"/>
+                            <field name="fonasa_id" invisible="True"/>
+                            <field name="sure_id" invisible="True"/>
                         </group>
                         <group col="4">
                             <field name="family"/>

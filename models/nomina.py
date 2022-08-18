@@ -24,7 +24,9 @@ class NominaCert(models.Model):
     afp = fields.Integer(string='AFP', compute='_afp', store=True)
     afp_id = fields.Float(string='Fondo AFP %', related='contract_id.afp_id')
     fonasa = fields.Integer(string='Fonasa', compute='_fonasa', store=True)
+    fonasa_id = fields.Float(string='Fonasa %', related='contract_id.fonasa_id')
     sure = fields.Integer(string='Seguro de Cesantia', compute='_sure')
+    sure_id = fields.Float(string='Seguro %', related='contract_id.sure_id')
     tax = fields.Integer(string='Impuesto Unico')
     family = fields.Integer(string='Cargas Familiares')
     car = fields.Integer(string='Asignación Locomoción')
@@ -72,15 +74,15 @@ class NominaCert(models.Model):
         for r in self:
             r.tax_id = r.family+r.car+r.lunch
 
-    @api.depends('taxi')
+    @api.depends('taxi','sure_id')
     def _sure(self):
         for r in self:
-            r.sure =  6*r.taxi/1000
+            r.sure =  r.sure_id*r.taxi/100
 
-    @api.depends('taxi')
+    @api.depends('taxi','fonasa_id')
     def _fonasa(self):
         for r in self:
-            r.fonasa = 7*r.taxi/100
+            r.fonasa = r.fonasa_id*r.taxi/100
 
     @api.depends('taxi','afp_id')
     def _afp(self):
