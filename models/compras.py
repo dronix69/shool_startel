@@ -23,4 +23,20 @@ class CertCompras(models.Model):
 
 
 
+class CertGasoil(models.Model):
+    _name = 'cert.gasoil'
+    _inherit = ['mail.thread', 'mail.activity.mixin']
+    _description = 'Modulo Gasolina'
+
+
+    name_id = fields.Many2one('cert.instructor', 'Responzable', required=True)
+    digito = fields.Char(string='Placa Patente', required=True)
+    km = fields.Char(string='KM del Vehiculo', required=True)
+    litro = fields.Integer(string='Litros de Combustible', required=True)
+    gasoil_a = fields.Boolean('Octanos 93')
+    gasoil_b = fields.Boolean('Octanos 95')
+    gasoil_c = fields.Boolean('Octanos 97')
+    gasoil_d = fields.Boolean('Diesel')
+    voucher = fields.Char(string='Nº del Recibo', required=True)
+    date = fields.Datetime(string='Fecha')
 

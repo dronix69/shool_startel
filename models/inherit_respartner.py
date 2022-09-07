@@ -58,7 +58,7 @@ class NacPartner(models.Model):
     _inherit = 'res.partner'
 
     bdate = fields.Date(string='Fecha de Nacimiento', required=True)
-    student_age = fields.Char(string='Edad', compute='_get_age_from_student')
+    student_age = fields.Integer(string='Edad', compute='_get_age_from_student')
 
 
     @api.depends('bdate')
@@ -71,3 +71,4 @@ class NacPartner(models.Model):
                 stud.student_age = total_age
             else:
                 stud.student_age = 'No Provisto...'
+

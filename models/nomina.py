@@ -23,7 +23,7 @@ class NominaCert(models.Model):
     gratuity = fields.Integer(string='Gratificación Legal', compute='_gratuity')
     afp = fields.Integer(string='AFP', compute='_afp', store=True)
     afp_id = fields.Float(string='Fondo AFP %', related='contract_id.afp_id')
-    fonasa = fields.Integer(string='Fonasa', compute='_fonasa', store=True)
+    fonasa = fields.Integer(string='Fonasa / Isapre', compute='_fonasa', store=True)
     fonasa_id = fields.Float(string='Fonasa %', related='contract_id.fonasa_id')
     sure = fields.Integer(string='Seguro de Cesantia', compute='_sure')
     sure_id = fields.Float(string='Seguro %', related='contract_id.sure_id')
@@ -43,6 +43,7 @@ class NominaCert(models.Model):
     contract_id = fields.Many2one('hr.contract', string='Contracto', required=True)
     days = fields.Integer(string='Dias Trabajados', required=True)
     sale_id = fields.Integer(string='Sueldo Base', related='contract_id.sale', store=True)
+
 
     @api.depends('days','sale_id')
     def _sale(self):

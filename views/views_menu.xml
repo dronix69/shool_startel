@@ -51,6 +51,13 @@
             <field name="view_mode">tree,form</field>
         </record>
 
+        <record id="action_cert_gasoil_view" model="ir.actions.act_window">
+            <field name="name">Combustible</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">cert.gasoil</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
         <record id="action_cert_simulador_view" model="ir.actions.act_window">
             <field name="name">Simulador</field>
             <field name="type">ir.actions.act_window</field>
@@ -116,6 +123,7 @@
         <menuitem id="menu_imagen_pdf" name="Imagen" parent="menu_configuracion_root" action="action_imagen_pdf_view"/>
         <menuitem id="menu_nomina_cert" name="Nomina" parent="menu_configuracion_root" action="action_cert_nomina_view"/>
         <menuitem id="menu_asignatura_cert" name="Asignaturas" parent="menu_configuracion_root" action="action_cert_asignatura_view"/>
+        <menuitem id="menu_gasoil_cert" name="Combustible" parent="menu_configuracion_root" action="action_cert_gasoil_view"/>
     </data>
 </odoo>
 
