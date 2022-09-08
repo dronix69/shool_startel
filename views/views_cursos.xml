@@ -22,7 +22,7 @@
                             <field name="codigo"/>
                             <field name="modal_id" required="1"/>
                             <field name="fridname" widget="selection" domain="[('job_title','=','Vendedores')]"/>
-                            <field name="secuencia" />
+                            <field name="secuencia"/>
                         </group>
                         <notebook colspan="4">
                             <page string="Student">

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from odoo import models, fields, api
+from odoo import models, fields, api, _
 from datetime import datetime, date, timedelta
 import logging
 import re
@@ -28,7 +28,9 @@ class CertGasoil(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Modulo Gasolina'
 
-
+    #secuencia = fields.Integer(string='Total Alumno')
+    name = fields.Char(string='Nº Reference', required=True, copy=False, readonly=True,
+                       default=lambda self: _('New'))
     name_id = fields.Many2one('cert.instructor', 'Responzable', required=True)
     digito = fields.Char(string='Placa Patente', required=True)
     km = fields.Char(string='KM del Vehiculo', required=True)
@@ -38,5 +40,12 @@ class CertGasoil(models.Model):
     gasoil_c = fields.Boolean('Octanos 97')
     gasoil_d = fields.Boolean('Diesel')
     voucher = fields.Char(string='Nº del Recibo', required=True)
-    date = fields.Datetime(string='Fecha')
+    date = fields.Datetime(string='Fecha', default=fields.Date.today())
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            vals['name'] = self.env['ir.sequence'].next_by_code('cert.gasoil') or _('New')
+        res = super(CertGasoil, self).create(vals)
+        return res
 
