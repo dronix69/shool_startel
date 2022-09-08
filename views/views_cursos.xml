@@ -52,7 +52,7 @@
 
         <!--Form pdf -->
 
-            <record id="view_imagen_pdf_form" model="ir.ui.view">
+           <!-- <record id="view_imagen_pdf_form" model="ir.ui.view">
             <field name="name">imagen.pdf.form</field>
             <field name="model">imagen.pdf</field>
             <field name="arch" type="xml">
@@ -67,7 +67,7 @@
                     </sheet>
                 </form>
             </field>
-        </record>
+        </record>-->
 
         <!--From de Asignatura  -->
 

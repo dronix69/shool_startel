@@ -35,11 +35,11 @@ class CursCert(models.Model):
 
 
 
-class ImagenPdf(models.Model):
-    _name = 'imagen.pdf'
+#class ImagenPdf(models.Model):
+#    _name = 'imagen.pdf'
 
-    name = fields.Char(string='Titulo', required=True)
-    img = fields.Binary(string='Imagen')
+#    name = fields.Char(string='Titulo', required=True)
+#    img = fields.Binary(string='Imagen')
 
 
 class CertAsignatura(models.Model):

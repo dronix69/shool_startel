@@ -1,7 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_certificados_usuario,certificados.usuario,model_certificados_cert,group_shool_startel_usuario,1,1,1,1
 access_certificados_cursos_usuario,certificados.cursos.usuario,model_cert_cursos,group_shool_startel_usuario,1,0,0,0
-access_certificados_imagen_usuario,certificados.imagen.usuario,model_imagen_pdf,group_shool_startel_usuario,1,1,1,1
 access_certificados_simulador_usuario,certificados.simulador.usuario,model_cert_simulador,group_shool_startel_usuario,1,1,1,1
 access_certificados_codigo_usuario,certificados.codigo.usuario,model_cert_codigo,group_shool_startel_usuario,1,1,1,1
 access_certificados_practicas_usuario,certificados.practicas.usuario,model_cert_practicas,group_shool_startel_usuario,1,1,1,1
@@ -24,7 +23,6 @@ access_certificados_clases_administration,certificados.clases.administration,mod
 ,,,,,,,
 access_certificados_instructor,certificados.instructor,model_certificados_cert,group_shool_startel_instructor,1,0,0,0
 access_certificados_cursos_instructor,certificados.cursos.instructor,model_cert_cursos,group_shool_startel_instructor,0,0,0,0
-access_certificados_imagen_instructor,certificados.imagen.instructor,model_imagen_pdf,group_shool_startel_instructor,0,0,0,0
 access_certificados_simulador_instructor,certificados.simulador.instructor,model_cert_simulador,group_shool_startel_instructor,1,0,0,0
 access_certificados_codigo_instructor,certificados.codigo.instructor,model_cert_codigo,group_shool_startel_instructor,1,1,0,0
 access_certificados_practicas_instructor,certificados.practicas.instructor,model_cert_practicas,group_shool_startel_instructor,1,1,0,0
