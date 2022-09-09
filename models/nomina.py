@@ -13,7 +13,7 @@ class NominaCert(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Nomina Empleados'
 
-    name = fields.Many2one('hr.employee', string='Empleados', required=True,)
+    name = fields.Many2one('res.users', string='Empleados', required=True,)
     rut = fields.Char(string='Rut', related="name.identification_id")
     poste = fields.Char(related='name.job_title', string='Puesto de Trabajo')
     date = fields.Date('Fecha', default=fields.Date.today())

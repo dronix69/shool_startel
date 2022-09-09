@@ -38,7 +38,7 @@ class CertGasoil(models.Model):
 
     name = fields.Char(string='Nº Reference', required=True, copy=False, readonly=True,
                        default=lambda self: _('New'))
-    name_id = fields.Many2one('cert.instructor', 'Responzable', required=True)
+    user_id = fields.Many2one('res.users', 'Responzable', required=True)
     digito = fields.Char(string='Placa Patente', required=True)
     km = fields.Char(string='KM del Vehiculo', required=True)
     litro = fields.Integer(string='Litros de Combustible', required=True)
