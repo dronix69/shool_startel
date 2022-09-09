@@ -61,7 +61,8 @@
             <field name="model">cert.compras</field>
             <field name="arch" type="xml">
                 <pivot>
-                    <field name="date_id" type="row"/>
+                    <field name="clerk" type="row"/>
+                    <field name="date_id" interval="month" type="col"/>
                     <field name="coste" type="measure"/>
                 </pivot>
             </field>
@@ -87,6 +88,11 @@
             <field name="model">cert.gasoil</field>
             <field name="arch" type="xml">
                 <form string="Combustibles">
+                    <header>
+                        <button name="action_done" type="object" string="Aprobado" states="A"  class="oe_highlight"
+                        confirm="Esta Seguro en Aprobar esta solicitud?"/>
+                        <field name="state"  widget="statusbar" statusbar_visible="A,B"/>
+                    </header>
                     <sheet>
                         <separator string="REGISTRAR COMBUSTIBLES"/>
                         <div class="oe_title">
@@ -117,6 +123,7 @@
                             <field name="gasoil_d"/>
                         </group>
                     </sheet>
+                    <div class="o_attachment_preview"/>
                     <div class="oe_chatter">
                         <field name="message_follower_ids"/>
                         <field name="activity_ids"/>
@@ -130,7 +137,7 @@
             <field name="name">gasoil.tree</field>
             <field name="model">cert.gasoil</field>
             <field name="arch" type="xml">
-                <tree string="Combustible">
+                <tree string="Combustible" decoration-danger="state == 'A'" decoration-info="state == 'B'">
                     <field name="name"/>
                     <field name="name_id"/>
                     <field name="date"/>
@@ -142,6 +149,7 @@
                     <field name="gasoil_c"/>
                     <field name="gasoil_d"/>
                     <field name="voucher"/>
+                    <field name="state" decoration-danger="state == 'A'" decoration-info="state == 'B'" widget="badge"/>
                 </tree>
             </field>
         </record>

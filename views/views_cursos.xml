@@ -162,12 +162,8 @@
             <field name="model">cert.clases</field>
             <field name="arch" type="xml">
                 <pivot>
-                    <field name="name" />
-                    <field name="date_start" interval="week"/>
-                    <field name="date_stop" />
-                    <field name="course" type="col"/>
-                    <field name="course_id"/>
-                    <field name="duration"/>
+                    <field name="name" type="row"/>
+                    <field name="date_start" interval="month" type="col"/>
                 </pivot>
             </field>
         </record>

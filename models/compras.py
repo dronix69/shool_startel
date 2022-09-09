@@ -28,7 +28,14 @@ class CertGasoil(models.Model):
     _inherit = ['mail.thread', 'mail.activity.mixin']
     _description = 'Modulo Gasolina'
 
-    #secuencia = fields.Integer(string='Total Alumno')
+    def action_confirm(self):
+        for rec in self:
+            rec.state = 'A'
+
+    def action_done(self):
+        for rec in self:
+            rec.state = 'B'
+
     name = fields.Char(string='Nº Reference', required=True, copy=False, readonly=True,
                        default=lambda self: _('New'))
     name_id = fields.Many2one('cert.instructor', 'Responzable', required=True)
@@ -40,7 +47,8 @@ class CertGasoil(models.Model):
     gasoil_c = fields.Boolean('Octanos 97')
     gasoil_d = fields.Boolean('Diesel')
     voucher = fields.Char(string='Nº del Recibo', required=True)
-    date = fields.Datetime(string='Fecha', default=fields.Date.today())
+    date = fields.Datetime(readonly=True, string='Fecha', default=fields.Date.context_today)
+    state = fields.Selection([('A', 'Sin Aprobar'), ('B', 'Aprobado')], default='A')
 
     @api.model
     def create(self, vals):

@@ -89,9 +89,10 @@
             <field name="arch" type="xml">
                 <pivot>
                     <field name="name" type="row"/>
-                    <field name="sale"/>
-                    <field name="afp"/>
-                    <field name="fonasa"/>
+                    <field name="month" interval="year" type="col"/>
+                    <field name="afp" type="measure"/>
+                    <field name="fonasa" type="measure"/>
+                    <field name="pay" type="measure"/>
                 </pivot>
             </field>
         </record>
