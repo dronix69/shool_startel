@@ -1,5 +1,10 @@
-import datetime
+# -*- coding: utf-8 -*-
+# Part of Odoo. See LICENSE file for full copyright and licensing details.
+
+
 from odoo import fields, models, api
+import time
+from datetime import date
 from odoo.exceptions import ValidationError
 import re
 
@@ -8,7 +13,7 @@ class NewResPartner(models.Model):
 
     educa = fields.Selection(
         [('B', 'Basica Completa'), ('N', 'Media Incompleta'), ('C', 'Media Completa'), ('S', 'Superior')],
-        string='Nivel Educacional')
+        string='Nivel Educacional', default= 'N')
     jornal = fields.Selection(
         [('j_mañana', 'Jornada Mañana'), ('j_tarde', 'Jornada Tarde'), ('vespertino', 'Vespertino'),
          ('f_semana', 'Fin de Semana')],
@@ -57,18 +62,18 @@ class NewResPartner(models.Model):
 class NacPartner(models.Model):
     _inherit = 'res.partner'
 
-    bdate = fields.Date(string='Fecha de Nacimiento', required=True)
+    bdate = fields.Date(string='Fecha de Nacimiento')
     student_age = fields.Integer(string='Edad', compute='_get_age_from_student')
 
 
     @api.depends('bdate')
     def _get_age_from_student(self):
-        today_date = datetime.date.today()
+        today_date = date.today()
         for stud in self:
             if stud.bdate:
                 bdate = fields.Datetime.to_datetime(stud.bdate).date()
                 total_age = str(int((today_date - bdate).days / 365))
                 stud.student_age = total_age
             else:
-                stud.student_age = 'No Provisto...'
+                stud.student_age = 0
 

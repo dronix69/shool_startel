@@ -17,23 +17,23 @@
                         <separator string="Registrar Fecha y Hora"/>
                         <div class="oe_title">
                              <h1>
-                                 <field name="name" placeholder="Nombre Alumno"/>
+                                 <field name="name" placeholder="Alumno"/>
                              </h1>
                         </div>
-                        <group col="4" colspan="4">
+                        <group col="4" >
                             <field name="ward"  placeholder="Rut" required="1"/>
                             <field name="fhone" placeholder="+56" widget="phone"/>
                             <field name="lessons"/>
                             <field name="instructor" widget="selection" />
                         </group>
 
-                        <group col="4" colspan="4">
+                        <group col="4" >
                             <field name="date_first"/>
                             <field name="date_last"/>
                             <field name="duration" widget="float_time"/>
                         </group>
 
-                        <group col="4" colspan="4" string="Instruciones Realizadas">
+                        <group col="4"  string="Instruciones Realizadas">
                             <field name="tick1"/>
                             <field name="tick2"/>
                             <field name="tick3"/>
@@ -42,15 +42,13 @@
                             <field name="tick6"/>
                             <field name="tick7"/>
                         </group>
-                        <group col="4" colspan="4">
+                        <group col="4" >
                             <field name="km1"/>
                             <field name="km2"/>
                             <field name="total_id"/>
                         </group>
-                        <newline />
-                            <separator string="Comentarios" colspan="4" />
-                            <field name="comment" colspan="4" placeholder="Comentarios"/>
-                        <group col="4" colspan="4">
+                        <group>
+                            <field name="comment" class="oe_inline"  placeholder="Nota..."/>
                             <label for="digital_signatures" string="Signatures" class="oe_edit_only" />
                             <h3>
                                 <field name="digital_signatures" widget="signature"/>

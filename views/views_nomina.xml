@@ -13,7 +13,7 @@
                         <separator string="CREAR LIQUIDACIÓN"/>
                         <div class="oe_title">
                              <h1>
-                                <field name="name"/>
+                                <field name="name" placeholder="Empleado..."  />
                              </h1>
                         </div>
                         <group col="4">

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
-from datetime import datetime, date, timedelta
+from datetime import date
+import time
 import logging
 import re
 
@@ -47,7 +48,7 @@ class CertGasoil(models.Model):
     gasoil_c = fields.Boolean('Octanos 97')
     gasoil_d = fields.Boolean('Diesel')
     voucher = fields.Char(string='Nº del Recibo', required=True)
-    date = fields.Datetime(readonly=True, string='Fecha', default=fields.Date.context_today)
+    date = fields.Date(string='Fecha', default=fields.Date.today())
     state = fields.Selection([('A', 'Sin Aprobar'), ('B', 'Aprobado')], default='A')
 
     @api.model
