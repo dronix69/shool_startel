@@ -132,6 +132,7 @@
                         <group col="4" string="Modulos">
                             <field name="course" widget="many2many_tags" options="{'color_field': 'color'}"/>
                             <field name="jornada"/>
+                            <field name="alumno" widget="many2many_tags" domain="[('title','=','Alumno')]"/>
                         </group>
                         <newline/>
                         <separator string="Comentarios" colspan="4"/>
@@ -154,6 +155,7 @@
                     <field name="jornada"/>
                     <field name="state" decoration-danger="state == 'A'" decoration-info="state == 'B'" widget="badge"/>
                     <field name="course" widget="many2many_tags" options="{'color_field': 'color'}"/>
+                    <field name="alumno" widget="many2many_tags" optional="hide"/>
                 </tree>
             </field>
         </record>
