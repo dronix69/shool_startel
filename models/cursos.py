@@ -84,7 +84,7 @@ class CertClases(models.Model):
     course_id = fields.Selection([('BO', 'BO'), ('BP', 'BP'), ('A2', 'A2'), ('A3', 'A3'), ('A4', 'A4'), ('A5', 'A5'),
                                ('A2-A4', 'A2-A4'), ('A3-A5', 'A3-A5')], default='Select', string='Curso')
     jornada = fields.Selection(
-        [('M', 'Mañana'), ('T', 'Tarde'), ('V', 'Vespertino')], string='Jornada')
+        [('M', 'Mañana'), ('T', 'Tarde'), ('V', 'Vespertino'), ('D', 'Todo el Dia')], string='Jornada')
     alumno = fields.Many2many('res.partner', string="Alumnos")
 
 
