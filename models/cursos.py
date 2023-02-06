@@ -33,7 +33,11 @@ class CursCert(models.Model):
         res = super(CursCert, self).create(vals)
         return res
 
-
+    def name_get(self):
+        result = []
+        for rec in self:
+            result.append((rec.id, '%s-%s'%(rec.codigo, rec.name)))
+        return result
 
 #class ImagenPdf(models.Model):
 #    _name = 'imagen.pdf'
