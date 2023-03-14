@@ -85,11 +85,25 @@ class CertClases(models.Model):
     course = fields.Many2many('cert.asignatura', string="Asignaturas")
     comment = fields.Text('Comentarios', help='Comentarios')
     state = fields.Selection([('A', 'Clase no Realizada'), ('B', 'Completado')], default='A')
-    course_id = fields.Selection([('BO', 'BO'), ('BP', 'BP'), ('A2', 'A2'), ('A3', 'A3'), ('A4', 'A4'), ('A5', 'A5'),
-                               ('A2-A4', 'A2-A4'), ('A3-A5', 'A3-A5')], default='Select', string='Curso')
-    jornada = fields.Selection(
-        [('M', 'Mañana'), ('T', 'Tarde'), ('V', 'Vespertino'), ('D', 'Todo el Dia')], string='Jornada')
+    course_id = fields.Selection([
+        ('BO', 'BO'),
+        ('BP', 'BP'),
+        ('A2', 'A2'),
+        ('A3', 'A3'),
+        ('A4', 'A4'),
+        ('A5', 'A5'),
+        ('A2-A4', 'A2-A4'),
+        ('A3-A5', 'A3-A5')
+    ], default='Select', string='Curso')
+    jornada = fields.Selection([
+        ('M', 'Mañana'),
+        ('T', 'Tarde'),
+        ('V', 'Vespertino'),
+        ('D', 'Todo el Dia')
+    ], string='Jornada')
     alumno = fields.Many2many('res.partner', string="Alumnos")
+
+
 
 
 

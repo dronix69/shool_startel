@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
+from odoo.tools.translate import _
 from datetime import datetime, date, timedelta
 import logging
 import re
@@ -54,6 +55,15 @@ class CertPracticas(models.Model):
 
 
     @api.onchange('ward')
+    def onchange_ward(self):
+        if self.ward:
+            alumno = self.env['cert.alumno'].search([('id', '=', self.ward.id)])
+            if alumno.employee_ids:
+                self.instructor = alumno.employee_ids.id
+            else:
+                self.instructor = False
+
+    @api.onchange('ward')
     def _onchange_ward(self):
         for record in self:
             if record.ward:
@@ -81,6 +91,15 @@ class CertAlumno(models.Model):
     student = fields.One2many('cert.practicas', 'ward', 'Alumnos')
     image = fields.Binary(string='Imagen')
     student_count = fields.Integer(string="Total Practicas", compute="compute_student_count")
+
+
+    @api.onchange('name')
+    def onchange_name(self):
+        partner = self.env['res.partner'].search([('vat', '=', self.name)], limit=1)
+        if partner:
+            self.name_id = partner.name
+        else:
+            self.name_id = False
 
     def get_practicas(self):
         self.ensure_one()

@@ -155,7 +155,7 @@
                     <field name="jornada"/>
                     <field name="state" decoration-danger="state == 'A'" decoration-info="state == 'B'" widget="badge"/>
                     <field name="course" widget="many2many_tags" options="{'color_field': 'color'}"/>
-                    <field name="alumno" widget="many2many_tags" optional="hide"/>
+                    <field name="alumno" widget="many2many_tags" options="{'color_field': 'color'}"/>
                 </tree>
             </field>
         </record>
