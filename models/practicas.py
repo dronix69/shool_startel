@@ -114,6 +114,6 @@ class CertInstructor(models.Model):
 
     name = fields.Char(string='Nombre', required=True )
     date = fields.Date(string='Fecha', required=True)
-    card = fields.Many2one('fleet.vehicle.model.brand')
+    card = fields.Char(string'Marca')
     model = fields.Char(string='Modelo')
     patente = fields.Char(string='Patente')
