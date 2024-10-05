@@ -43,7 +43,7 @@
                         <notebook>
                             <page string="Progreso" name="progress">
                                 <field name="progress" widget="gauge"
-                                       options="{'style': 'width:100px; height: 100px;'}"/>
+                                       options="{'style': 'width:100px; height: 100px;', 'max_value': 100, 'value_field': 'progress'}"/>
                             </page>
                         </notebook>
                     </sheet>
